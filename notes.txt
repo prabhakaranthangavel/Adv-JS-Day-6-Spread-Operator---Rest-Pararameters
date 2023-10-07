@@ -1,0 +1,222 @@
+Contents:
+
+1.for of Method
+2.for in Method
+3.forEach Method
+4.Spread operator
+5.Rest parameter             
+
+*************************************************************************************************************************
+
+1.for of Method
+
+===>Object ல் உள்ள value ஐ access செய்ய for of பயன்படுகிறது.
+
+===>Example:
+
+    async function foo() {
+    try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const result = await res.json();
+        for(let obj of result){
+            console.log(obj.name.common);
+        }
+    } catch (error) {
+        console.log("error");
+    }
+    }
+    foo(); 
+
+    o/p:
+    French Polynesia
+    Saint Martin
+    Venezuela
+    Réunion           and etc.,,,
+
+===>for(let obj of result){
+            console.log(obj.name.common);
+        }
+    இதுதான் for of method ஆகும்.
+    let = variables
+    obj = user defined name (Temporary variable போன்றது.)
+    of  = syntax
+    result = API உடைய மொத்த result  
+
+===>நமக்கு எந்த value தேவைப்படுகிறதோ அதை நேரடியாக call செய்து பெறலாம்.
+    இதுதான் for of method ஆகும்.
+
+===>பொதுவாக for loop ஐ பயன்படுத்தும் போது length,increment/decrement,[i] போன்றவை எல்லாம் கொடுத்து output ஐ பெறுவோம்.
+    ஆனால் for of loop ல் நேரடியாக call செய்து பெறலாம்.
+
+===>Example 2:
+
+    async function foo() {
+        try {
+            const res = await fetch("https://restcountries.com/v3.1/all");
+            const result = await res.json();
+            for(const obj of result){
+                console.log(obj.area);
+            }
+        } catch (error) {
+            console.log("error");
+        }
+    }
+    foo();            
+
+    o/p:area values display
+    4167  
+    53 
+    916445   and etc.,
+
+*************************************************************************************************************************
+
+2.for in Method
+
+===>Object ல் உள்ள index ஐ base செய்து work ஆக for in பயன்படுகிறது.
+
+===>கிட்டத்தட்ட for loop ஐ போன்றது ஆகும்.ஆனால் length,increment/decrement போன்றவை எல்லாம் கொடுக்காமல் 
+    index value ஐ மட்டும் கொடுத்து output ஐ print செய்வோம்.
+
+===>Example:
+
+    async function foo() {
+    try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const result = await res.json();
+        for(const index in result){
+            console.log(result[index].area);
+        }
+        } catch (error) {
+        console.log("error");
+        }
+    }
+    foo();
+
+    o/p:area values display
+    4167  
+    53 
+    916445   and etc.,
+
+
+*************************************************************************************************************************
+
+3.forEach Method
+
+===>foreach similar to map method.
+    கிட்டத்தட்ட map method ஐ போன்றது ஆகும்.ஆனால் iterates செய்வதற்கு use பண்ண மாட்டோம்.
+
+===>it is used only for printing purpose.
+    இது print செய்வதற்கு மட்டுமே பயன்படுத்தப்படுகிறது.
+
+===>It iterates/transforms over each and every element and prints the value
+
+===>Example:
+
+    async function foo() {
+    try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const result = await res.json();
+        result.forEach(element => {
+            console.log(element.name);
+        });
+    } catch (error) {
+        console.log("error");
+    }
+}
+foo();
+
+o/p:
+{common: 'French Polynesia', official: 'French Polynesia', nativeName: {…}}
+
+{common: 'Saint Martin', official: 'Saint Martin', nativeName: {…}}
+
+{common: 'Venezuela', official: 'Bolivarian Republic of Venezuela', nativeName: {…}}  and etc.,,,
+
+
+===>Example:Using map method
+
+    async function foo() {
+    try {
+        const res = await fetch("https://restcountries.com/v3.1/all");
+        const result = await res.json();
+        result.map(element => {
+            console.log(element.name);
+        });
+    } catch (error) {
+        console.log("error");
+    }
+}
+foo();
+
+o/p: no changes for forEach output
+{common: 'French Polynesia', official: 'French Polynesia', nativeName: {…}}
+
+{common: 'Saint Martin', official: 'Saint Martin', nativeName: {…}}
+
+{common: 'Venezuela', official: 'Bolivarian Republic of Venezuela', nativeName: {…}}  and etc.,,,
+
+*************************************************************************************************************************
+
+4.Spread operator
+
+===>Spread operator ன் keyword ... ஆகும்.
+
+===>join() க்கு alternative method தான் Spread operator ஆகும்.
+
+===>இதன் மூலம் Original Array ல் என்ன datatype ஆக உள்ளதோ அது அப்படியே வரும்.
+
+===>converts a string into character array
+    ஒரு string ஐ character Array ஆக மாற்ற பயன்படுகிறது.
+
+===>இதன் மூலம் Concatenation செய்ய முடியும்.
+
+===>Syntax:
+
+    ... (3dots only)
+
+===>Example:
+
+    var arr  = ["Prabha","Karan"]
+    var arr1 = ["Erode", "9688841727"]
+    var arr2 = [...arr,...arr1]
+    console.log(arr2);
+
+    o/p:
+    ['Prabha', 'Karan', 'Erode', '9688841727']  length:4
+
+*************************************************************************************************************************
+
+5.Rest parameter 
+
+===>To consider remaining values.
+    Remaining values ஐ consider செய்து வரும்.
+
+===>it used inside the function.
+    ஒரு function ல் நிறைய parameterகள் உள்ளன.
+    ஒவ்வொரு parameter ஐயும் தனித்தனியாக call பண்ண வேண்டிய அவசியம் வரும்போது rest parameter பயன்படுத்துகிறோம்.
+    இதுதான் இதனுடைய advantage ஆகும்.
+
+===>parameter ஐ சரியாக கொடுக்க வேண்டும்.
+
+===>Syntax:
+
+    ...rest (parameter க்குள் கடைசியாகத்தான் கொடுக்க வேண்டும்)
+
+===>Example:
+
+    function foo(a,b,c,...rest){
+        var sum = 0;
+        for(var i=0;i<rest.length;i++){           (i<rest.length)
+            sum=sum+rest[i]
+        }
+        return sum;
+    }
+    console.log(foo(12,13,14,15,16,17,18,19,20))        //105
+
+    a=12
+    b=13
+    c=14
+    
+    rest=15+16+17+18+19+20 = 105
+
+*************************************************************************************************************************
